@@ -137,8 +137,27 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun LightUpRoot(auth: FirebaseAuth = Firebase.auth) {
-    val currentUser by auth.authStateFlow().collectAsStateWithLifecycle(initialValue = auth.currentUser)
+fun LightUpRoot(auth: FirebaseAuth? = null) {
+    val context = LocalContext.current
+    val resolvedAuth = remember(auth, context) {
+        auth ?: if (com.google.firebase.FirebaseApp.getApps(context).isNotEmpty()) {
+            Firebase.auth
+        } else {
+            null
+        }
+    }
+
+    if (resolvedAuth == null) {
+        LightUpTheme(darkTheme = false) {
+            AuthScreen(
+                enableAutoSignIn = false,
+                onAuthSuccess = {}
+            )
+        }
+        return
+    }
+
+    val currentUser by resolvedAuth.authStateFlow().collectAsStateWithLifecycle(initialValue = resolvedAuth.currentUser)
     val user = currentUser
 
     if (user == null) {

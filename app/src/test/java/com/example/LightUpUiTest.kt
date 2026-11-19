@@ -7,11 +7,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertTextContains
 import androidx.compose.ui.test.hasAnyDescendant
+import androidx.compose.ui.test.hasContentDescription
 import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onAllNodesWithText
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onFirst
@@ -211,6 +213,7 @@ class LightUpUiTest {
             userPreferencesRepository = preferencesRepository
         )
         runBlocking {
+            preferencesRepository.clearPreferences()
             repository.ensurePresetsSeeded()
         }
         bleWatchManager = BleWatchManager(context)
@@ -669,9 +672,13 @@ class LightUpUiTest {
     fun uatWorkoutCheckInAndDaySteppingWorkEndToEnd() {
         launchShell()
 
-        // Toggle workout check-in -> calorie target offset updates immediately
+        // Toggle workout check-in -> card updates immediately and hero card reflects +250 kcal offset
         scrollListToTag("dashboard_list", "workout_checkin_card")
         composeTestRule.onNodeWithTag("workout_checkin_card").performClick()
+        waitForText("+250 kcal added to target")
+        composeTestRule.onNodeWithText("+250 kcal added to target").assertIsDisplayed()
+
+        scrollListToTag("dashboard_list", "dashboard_consumed_calories")
         waitForText("Includes +250 kcal workout offset")
         composeTestRule.onNodeWithText("Includes +250 kcal workout offset").assertIsDisplayed()
 
@@ -680,7 +687,88 @@ class LightUpUiTest {
         composeTestRule.onNodeWithTag("day_prev_button").performClick()
         waitForTag("day_jump_today_button")
         composeTestRule.onNodeWithTag("day_jump_today_button").assertIsDisplayed().performClick()
+        composeTestRule.waitUntil(timeoutMillis = 5_000L) {
+            composeTestRule.onAllNodesWithTag("day_jump_today_button").fetchSemanticsNodes().isEmpty()
+        }
+        composeTestRule.onAllNodesWithText("Dashboard").onFirst().assertIsDisplayed()
+    }
+
+    @Test
+    fun uatMealToggleCompletionAndDeleteUpdatesCalorieTotal() {
+        launchShell()
+
+        // Log a meal via Quick Add
+        scrollListToTag("dashboard_list", "today_log_food_button")
+        composeTestRule.onNodeWithTag("today_log_food_button").performClick()
         composeTestRule.waitForIdle()
-        composeTestRule.onNodeWithText("Dashboard").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("quick_meal_name_input").performScrollTo().performTextInput("Steak Burrito Bowl")
+        composeTestRule.onNodeWithTag("quick_meal_calories_input").performScrollTo().performTextInput("820")
+        composeTestRule.onNodeWithTag("submit_quick_meal_button").performScrollTo().performClick()
+        composeTestRule.waitForIdle()
+
+        scrollListToTag("dashboard_list", "dashboard_consumed_calories")
+        composeTestRule.waitUntil(timeoutMillis = 5_000L) {
+            composeTestRule.onAllNodes(
+                hasTestTag("dashboard_consumed_calories") and hasText("820", substring = true)
+            ).fetchSemanticsNodes().isNotEmpty()
+        }
+
+        // Scroll to the logged meal, bring checkbox clear of bottom bar, uncheck completion -> consumed calories drops back to 0
+        composeTestRule.onNodeWithTag("dashboard_list")
+            .performScrollToNode(hasText("Steak Burrito Bowl") or hasAnyDescendant(hasText("Steak Burrito Bowl")))
+        composeTestRule.onNodeWithTag("dashboard_list").performTouchInput { swipeUp() }
+        composeTestRule.waitForIdle()
+        composeTestRule.onNode(
+            hasContentDescription("Toggle Steak Burrito Bowl completion"),
+            useUnmergedTree = true
+        ).performClick()
+        composeTestRule.waitForIdle()
+
+        scrollListToTag("dashboard_list", "dashboard_consumed_calories")
+        composeTestRule.waitUntil(timeoutMillis = 5_000L) {
+            composeTestRule.onAllNodes(
+                hasTestTag("dashboard_consumed_calories") and hasText("0", substring = false)
+            ).fetchSemanticsNodes().isNotEmpty()
+        }
+
+        // Delete the logged meal and verify it is removed from the list
+        composeTestRule.onNodeWithTag("dashboard_list")
+            .performScrollToNode(hasText("Steak Burrito Bowl") or hasAnyDescendant(hasText("Steak Burrito Bowl")))
+        composeTestRule.onNodeWithTag("dashboard_list").performTouchInput { swipeUp() }
+        composeTestRule.waitForIdle()
+        composeTestRule.onNodeWithContentDescription("Delete Steak Burrito Bowl").performClick()
+        composeTestRule.waitUntil(timeoutMillis = 5_000L) {
+            composeTestRule.onAllNodesWithText("Steak Burrito Bowl").fetchSemanticsNodes().isEmpty()
+        }
+    }
+
+    @Test
+    fun uatSettingsResetDataDialogClearsLoggedHistory() {
+        launchShell()
+
+        // Seed sample history via Dashboard weight card
+        scrollListToTag("dashboard_list", "dashboard_load_sample_weight_button")
+        composeTestRule.onNodeWithTag("dashboard_load_sample_weight_button").performClick()
+        waitForTag("dashboard_weight_chart")
+
+        // Open Settings and clear all logs via confirmation dialog
+        scrollListToTag("dashboard_list", "open_settings_button")
+        composeTestRule.onNodeWithTag("open_settings_button").performClick()
+        composeTestRule.waitForIdle()
+
+        scrollListToTag("settings_list", "settings_reset_data_button")
+        composeTestRule.onNodeWithTag("settings_list").performTouchInput { swipeUp() }
+        composeTestRule.waitForIdle()
+        composeTestRule.onNodeWithTag("settings_reset_data_button").performClick()
+        waitForText("Reset all nutrition logs?")
+        composeTestRule.onNodeWithText("Clear Data").performClick()
+        composeTestRule.waitForIdle()
+
+        // Return to Dashboard and confirm empty weight state returned
+        scrollListToTag("settings_list", "settings_back_button")
+        composeTestRule.onNodeWithTag("settings_back_button").performClick()
+        composeTestRule.waitForIdle()
+        scrollListToTag("dashboard_list", "dashboard_load_sample_weight_button")
+        composeTestRule.onNodeWithTag("dashboard_load_sample_weight_button").assertIsDisplayed()
     }
 }

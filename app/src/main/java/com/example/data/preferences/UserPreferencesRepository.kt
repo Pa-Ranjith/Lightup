@@ -186,6 +186,10 @@ class UserPreferencesRepository(private val context: Context) {
         }
     }
 
+    suspend fun clearPreferences() {
+        context.lightUpDataStore.edit { it.clear() }
+    }
+
     data class ComputedTargets(
         val calories: Int,
         val proteinG: Int,
