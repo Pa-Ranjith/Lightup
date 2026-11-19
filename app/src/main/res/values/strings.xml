@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">LightUp</string>
+    <string name="nav_dashboard">Dashboard</string>
+    <string name="nav_logs">Logs</string>
+    <string name="nav_goals">Goals</string>
+    <string name="nav_ai_assistant">AI Assistant</string>
+    <string name="nav_settings">Settings</string>
+    <string name="today_greeting_title">Daily Momentum</string>
+    <string name="ai_coach_button">AI Meal Coach</string>
+    <string name="ai_coach_subtitle">Smart meals tailored to your remaining macros</string>
+    <string name="empty_meals_title">Fuel your momentum</string>
+    <string name="empty_meals_subtitle">Log your first meal or ask AI Assistant for a calorie-smart idea.</string>
+    <string name="empty_trends_title">Your progression starts here</string>
+    <string name="empty_trends_subtitle">Record weight check-ins and meals to watch your trend curve take shape.</string>
+</resources>

@@ -1,0 +1,6 @@
+{
+  "name": "LightUp",
+  "description": "Playful nutrition, hydration, and weight-gain progression tracker with flexible goal modes and Gemini-powered meal suggestions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

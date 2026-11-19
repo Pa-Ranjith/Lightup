@@ -1,0 +1,240 @@
+---
+name: Zest Playful Momentum
+colors:
+  surface: '#efffd9'
+  surface-dim: '#d0e0bb'
+  surface-bright: '#efffd9'
+  surface-container-lowest: '#ffffff'
+  surface-container-low: '#e9f9d3'
+  surface-container: '#e4f4ce'
+  surface-container-high: '#deeec8'
+  surface-container-highest: '#d8e8c3'
+  on-surface: '#131f08'
+  on-surface-variant: '#424938'
+  inverse-surface: '#28341b'
+  inverse-on-surface: '#e6f6d0'
+  outline: '#727a67'
+  outline-variant: '#c2c9b3'
+  surface-tint: '#3f6900'
+  primary: '#3d6700'
+  on-primary: '#ffffff'
+  primary-container: '#4e8200'
+  on-primary-container: '#f9ffea'
+  inverse-primary: '#9bd854'
+  secondary: '#395ca7'
+  on-secondary: '#ffffff'
+  secondary-container: '#8bacfd'
+  on-secondary-container: '#143e88'
+  tertiary: '#815200'
+  on-tertiary: '#ffffff'
+  tertiary-container: '#a26800'
+  on-tertiary-container: '#fffbff'
+  error: '#ba1a1a'
+  on-error: '#ffffff'
+  error-container: '#ffdad6'
+  on-error-container: '#93000a'
+  primary-fixed: '#b6f56d'
+  primary-fixed-dim: '#9bd854'
+  on-primary-fixed: '#0f2000'
+  on-primary-fixed-variant: '#2e4f00'
+  secondary-fixed: '#d9e2ff'
+  secondary-fixed-dim: '#b0c6ff'
+  on-secondary-fixed: '#001945'
+  on-secondary-fixed-variant: '#1c438d'
+  tertiary-fixed: '#ffddb6'
+  tertiary-fixed-dim: '#ffb95a'
+  on-tertiary-fixed: '#2a1800'
+  on-tertiary-fixed-variant: '#643f00'
+  background: '#efffd9'
+  on-background: '#131f08'
+  surface-variant: '#d8e8c3'
+typography:
+  display-lg:
+    fontFamily: Bricolage Grotesque
+    fontSize: 44px
+    fontWeight: '800'
+    lineHeight: 52px
+  display-lg-mobile:
+    fontFamily: Bricolage Grotesque
+    fontSize: 36px
+    fontWeight: '800'
+    lineHeight: 44px
+  display-md:
+    fontFamily: Bricolage Grotesque
+    fontSize: 32px
+    fontWeight: '700'
+    lineHeight: 40px
+  headline-lg:
+    fontFamily: Bricolage Grotesque
+    fontSize: 26px
+    fontWeight: '700'
+    lineHeight: 34px
+  headline-md:
+    fontFamily: Bricolage Grotesque
+    fontSize: 22px
+    fontWeight: '700'
+    lineHeight: 28px
+  headline-sm:
+    fontFamily: Bricolage Grotesque
+    fontSize: 18px
+    fontWeight: '600'
+    lineHeight: 24px
+  title-md:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 16px
+    fontWeight: '700'
+    lineHeight: 22px
+  body-lg:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 16px
+    fontWeight: '500'
+    lineHeight: 24px
+  body-md:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 14px
+    fontWeight: '400'
+    lineHeight: 20px
+  body-sm:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 12px
+    fontWeight: '500'
+    lineHeight: 16px
+  label-lg:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 14px
+    fontWeight: '700'
+    lineHeight: 18px
+  label-md:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 12px
+    fontWeight: '700'
+    lineHeight: 16px
+  label-sm:
+    fontFamily: Plus Jakarta Sans
+    fontSize: 11px
+    fontWeight: '600'
+    lineHeight: 14px
+rounded:
+  sm: 0.5rem
+  DEFAULT: 1rem
+  md: 1.5rem
+  lg: 2rem
+  xl: 3rem
+  full: 9999px
+spacing:
+  gutter: 1rem
+  gutter-sm: 0.75rem
+  margin: 1.25rem
+  margin-sm: 1rem
+  space-xs: 0.25rem
+  space-sm: 0.5rem
+  space-md: 1rem
+  space-lg: 1.5rem
+  space-xl: 2rem
+---
+
+## Brand & Style
+
+The design system establishes a high-energy, encouraging, and tactile environment engineered for health and weight-gain progression. Rather than relying on intimidating clinical metrics or cold analytical charts, the interface borrows from gamified behavioral design patterns—pairing bold physical forms, pill geometries, and playful visual cues to make caloric surpluses, nutrient targets, and workout progress feel rewarding and approachable.
+
+### Aesthetic Principles
+- **Chunky & Tactile:** Elements display perceptible physical presence with soft pill corners, substantial touch targets, and inset volume, creating an inviting, toy-like interaction model without descending into skeuomorphic clutter.
+- **Supportive Gamification:** Daily tracking rituals are elevated through celebratory badges, rounded progress tracks, and dynamic visual anchors that reward adherence.
+- **Legible Density:** High visual impact in hero modules is balanced with disciplined information hierarchy for calorie logs, weight check-ins, and macronutrient distributions.
+
+## Colors
+
+The palette balances energizing leafy vitality with grounding earth tones and playful accents. Contrast compliance meets WCAG 2.1 AA standards across all functional pairings.
+
+### Palette Architecture
+- **Primary (`#538900`):** Core action brand color used for dominant calls to action, active tabs, completed states, and key interactive pill nodes. Text placed on this color must use `#FFFFFF`.
+- **Primary Soft (`#D7F3C2`):** Tinted foundational wash for selected states, pill chips, milestone meters, and low-urgency button backgrounds. Text placed on this color defaults to `Ink` (`#1A260E`).
+- **Secondary (`#8DAEFF`):** Sky periwinkle accent dedicated to hydration tracking, secondary actions, streak milestones, and playful metadata badges.
+- **Tertiary (`#CC8400`):** Warm amber/honey allocated to caloric density callouts, nutrient distribution charts, and alert banners.
+- **Canvas & Surfaces:**
+  - `Background` (`#F2F9ED`): Canvas base with a soft herbal tint, avoiding stark clinical white glare.
+  - `Surface` (`#FDFFFB`): Clean card and modal surface providing crisp contrast against the tinted canvas.
+  - `Surface 2` (`#E7F2DF`): Recessed panel background, input field fill, and nested card groupings.
+- **Typography & Structural Lines:**
+  - `Ink` (`#1A260E`): Deep moss green serving as the primary text token for maximum readability.
+  - `Ink 2` (`#586251`): Subdued olive tone for secondary labels, timestamps, and supporting units.
+  - `Line` (`#D8E0D1`): Low-contrast containment borders and dividers.
+- **Inverse & Status Elements:**
+  - `Inverse` (`#1C3400`): Deep forest tone reserved for dark hero summary cards, system toasts, and high-impact snack bars.
+  - `Success` (`#217B44`): Surpassed targets, completed milestones, and streak maintenance.
+  - `Warning` (`#AB6C00`): In-progress limits, pending meals, and schedule delays.
+  - `Danger` (`#BE423F`): Missing minimum nutrition thresholds, error states, and destructive actions.
+
+## Typography
+
+The type scale leverages expressive contrast: **Bricolage Grotesque** brings energetic personality to numeric scores, calorie counts, and section titles, while **Plus Jakarta Sans** ensures neutral legibility for logs, macronutrient breakdowns, and dense lists.
+
+### Typography Rules
+- **Numerical Metric Displays:** Calorie counts, body weight readings, and streak days rely on `display-lg-mobile` or `display-md` in Bricolage Grotesque with tight tracking (`-0.02em`) to enhance visual mass.
+- **Body & Data Pairings:** Tabular numbers in weight logging use Plus Jakarta Sans medium and bold weights to avoid shifting layouts during real-time value changes.
+- **Labels & Microcopy:** Badges, category headers, and form titles rely on `label-md` or `label-sm` set in bold with slight optical letter spacing (`+0.01em`) for immediate scannability.
+
+## Layout & Spacing
+
+The layout model is designed primarily for standard handheld Android viewports (360dp–412dp base widths) using a responsive 4-column layout on mobile, scaling to 8 columns on foldables and tablets.
+
+### Structural Framework
+- **Canvas Margins:** Fixed `1.25rem` (20px) horizontal margin on compact devices, dropping to `1rem` (16px) only on ultra-compact devices (<360dp width).
+- **Column System:** 4 fluid columns with `1rem` (16px) gutters on standard phones. Macro cards span 2 columns; primary day logs and hero progress trackers span 4 columns.
+- **Rhythm & Touch Standards:** All actionable elements respect a minimum touch envelope of 48x48dp. Stacked vertical modules follow `space-md` (16px) standard separation, while interior card padding scales between `space-md` and `space-lg` (24px) for prominent visual breathing room.
+- **Navigation Safety:** The Android system bottom navigation bar and home gesture indicators receive `space-xl` (32px) bottom padding clearance to ensure interactive elements never collide with system UI gestures.
+
+## Elevation & Depth
+
+Visual hierarchy rejects harsh drop shadows and complex translucent blur effects in favor of clean tonal separation and low-opacity, earth-tinted ambient depth.
+
+### Depth Tiers
+- **Tier 0 (Canvas Base):** `Background` (`#F2F9ED`) without elevation.
+- **Tier 1 (Surface Cards & Panels):** `Surface` (`#FDFFFB`) elevated by a 1px perimeter stroke using `Line` (`#D8E0D1`) and an ambient shadow: `0px 4px 12px rgba(26, 38, 14, 0.04)`.
+- **Tier 2 (Interactive Floating Elements):** Active buttons, floating quick-log FABs, and selected metric cards elevate using `0px 6px 16px rgba(83, 137, 0, 0.16)`.
+- **Tier 3 (Overlay Sheets & Drawers):** Modals, meal quick-add bottom sheets, and date pickers use `Surface` (`#FDFFFB`) with a deep ambient shadow: `0px -8px 24px rgba(26, 38, 14, 0.08)`.
+- **Inset Wells:** Recessed progress tracks, stepper fields, and unselected meal slots sit directly on `Surface 2` (`#E7F2DF`) with no drop shadow, producing a pressed-in physical depth.
+
+## Shapes
+
+The design system employs a soft, pill-forward shape aesthetic (`roundedness: 3`). Corners remain generous and inviting across every component level.
+
+### Curvature Hierarchy
+- **Pill Primitives (`9999px`):** Used universally for primary buttons, chip filters, streak badges, progress track caps, and bottom navigation pill indicators.
+- **Large Surface Containers (`2rem` / 32px):** Hero calorie summary containers, weight graph cards, and meal overview panels.
+- **Standard UI Cards (`1.25rem` / 20px):** Individual food log rows, macro stat blocks, and dialog modals.
+- **Nested Controls (`0.75rem` / 12px):** Internal input fields, inner meter tags, and icon badges nested inside standard cards.
+
+## Components
+
+### Buttons
+- **Primary Pill:** Background `#538900`, text `#FFFFFF` using `label-lg`, 52px height, fully rounded (`9999px`), horizontal padding `space-lg`. Pressed state darkens to `#447000`.
+- **Secondary / Soft Pill:** Background `#D7F3C2`, text `#1A260E` (`label-lg`), border none, 48px height.
+- **Ghost / Outlined:** 1.5px border `#D8E0D1`, text `#586251`, transparent background, 48px height.
+
+### Cards & Inset Panels
+- **Hero Daily Tracker Card:** Background `#FDFFFB`, 24px padding, border 1px solid `#D8E0D1`, radius `2rem`. Contains the circular or linear calorie progress meter and macronutrient split (Protein, Carbs, Fats).
+- **Feature Card (Dark Mode Contrast):** Background `Inverse` (`#1C3400`), text `#FFFFFF`, subtext `#D7F3C2`. Used exclusively for daily check-in streaks and high-priority milestones.
+- **Nested Inset Containers:** Placed inside cards using `Surface 2` (`#E7F2DF`) with 12px padding and 16px radius for grouping related food items or weight history snapshots.
+
+### Chips & Badges
+- **Streak & Gamification Badges:** Background `#8DAEFF` at 20% opacity with `#1A260E` text or solid `#8DAEFF` with white text. Height 28px, fully rounded, icon size 16px, padding `0.25rem 0.75rem`.
+- **Category Filter Chips:** 36px height, background `#E7F2DF`, active state transitions to `#538900` with white text.
+
+### Progress Bars & Chunky Meters
+- **Track:** Height 16px to 20px, fully rounded, background `#E7F2DF`.
+- **Fill Indicator:** Fully rounded fill in `#538900` (calories/protein), `#8DAEFF` (water), or `#CC8400` (carbohydrates). Includes smooth animated ease-out fills on value updates.
+
+### Input Fields & Steppers
+- **Text & Metric Inputs:** 52px height, filled style using `Surface 2` (`#E7F2DF`), 1px transparent border that shifts to `#538900` upon focus. Text in `#1A260E`, placeholder in `#586251`.
+- **Chunky Value Steppers (+ / -):** 44px circular or rounded-pill action nodes flanking the central bold display metric, designed for one-handed thumb interaction.
+
+### Checkboxes & Selection Controls
+- **Meal Completion Checkbox:** 28px soft-pill rounded square (radius 8px), border 2px solid `#D8E0D1`, selected state fills with `#538900` featuring a white check icon.
+- **Radio Rows:** Entire row acts as a selectable pill tile with 16px padding and `Surface 2` background.
+
+### Android Bottom Navigation Bar
+- **Specifications:** Fixed 64dp container height resting on an 80dp structural surface to respect device gesture insets. Background `#FDFFFB` with a top divider 1px `#D8E0D1`.
+- **Tabs (5 destinations):** Today, Metrics, Trends, Profile, Settings.
+- **Active State Indicator:** An active icon enclosed within a pill background `#D7F3C2` (64px width, 32px height) with `#538900` icon coloring, paired with a bold 11px label underneath. Inactive tabs display `#586251` icons and labels.
+- **Icons:** Material Symbols Outlined, 22px stroke weight.

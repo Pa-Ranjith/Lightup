@@ -1,0 +1,323 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User nutrition goals, body metrics, macro targets, and app preferences.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Firebase Auth UID of the profile owner."
+        },
+        "userName": {
+          "type": "string",
+          "description": "Display name shown in the greeting header."
+        },
+        "goalMode": {
+          "type": "string",
+          "enum": ["GAIN", "MAINTAIN", "CUT"],
+          "description": "Primary body composition goal mode."
+        },
+        "surplusPace": {
+          "type": "string",
+          "enum": ["LEAN_GAIN", "STEADY_GAIN", "MAINTENANCE", "GENTLE_CUT"],
+          "description": "Daily caloric delta pace."
+        },
+        "currentWeightKg": {
+          "type": "number",
+          "description": "Latest body weight in kilograms."
+        },
+        "targetWeightKg": {
+          "type": "number",
+          "description": "Target body weight in kilograms."
+        },
+        "heightCm": {
+          "type": "integer",
+          "description": "User height in centimeters."
+        },
+        "age": {
+          "type": "integer",
+          "description": "User age in years."
+        },
+        "activityLevel": {
+          "type": "string",
+          "enum": ["SEDENTARY", "LIGHT", "MODERATE", "ACTIVE", "VERY_ACTIVE"],
+          "description": "Weekly physical activity level."
+        },
+        "dailyCalorieTarget": {
+          "type": "integer",
+          "description": "Target daily intake in kcal."
+        },
+        "proteinTargetG": {
+          "type": "integer",
+          "description": "Daily protein target in grams."
+        },
+        "carbsTargetG": {
+          "type": "integer",
+          "description": "Daily carbohydrate target in grams."
+        },
+        "fatTargetG": {
+          "type": "integer",
+          "description": "Daily dietary fat target in grams."
+        },
+        "waterTargetMl": {
+          "type": "integer",
+          "description": "Daily hydration target in milliliters."
+        },
+        "useMetricUnits": {
+          "type": "boolean",
+          "description": "Whether metric units (kg, ml) are enabled."
+        },
+        "dietaryTags": {
+          "type": "array",
+          "description": "Preferred dietary tags for AI Coach prompts (max 15)."
+        },
+        "darkTheme": {
+          "type": "boolean",
+          "description": "Whether Dark Moss theme is active."
+        },
+        "mealRemindersEnabled": {
+          "type": "boolean",
+          "description": "Whether daily check-in nudges are enabled."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp set via FieldValue.serverTimestamp() at creation."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp updated via FieldValue.serverTimestamp() on edits."
+        }
+      },
+      "required": [
+        "userId",
+        "userName",
+        "goalMode",
+        "surplusPace",
+        "currentWeightKg",
+        "targetWeightKg",
+        "heightCm",
+        "age",
+        "activityLevel",
+        "dailyCalorieTarget",
+        "proteinTargetG",
+        "carbsTargetG",
+        "fatTargetG",
+        "waterTargetMl",
+        "useMetricUnits",
+        "dietaryTags",
+        "darkTheme",
+        "mealRemindersEnabled",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "MealLog": {
+      "title": "MealLog",
+      "description": "A meal entry logged for a specific date and meal slot.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "dateKey": { "type": "string" },
+        "mealSlot": {
+          "type": "string",
+          "enum": ["BREAKFAST", "LUNCH", "DINNER", "SNACK"]
+        },
+        "name": { "type": "string" },
+        "calories": { "type": "integer" },
+        "proteinGrams": { "type": "integer" },
+        "carbsGrams": { "type": "integer" },
+        "fatGrams": { "type": "integer" },
+        "completed": { "type": "boolean" },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Set via FieldValue.serverTimestamp()."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Set via FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "userId",
+        "dateKey",
+        "mealSlot",
+        "name",
+        "calories",
+        "proteinGrams",
+        "carbsGrams",
+        "fatGrams",
+        "completed",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "FoodPreset": {
+      "title": "FoodPreset",
+      "description": "Saved food template or quick-log preset.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "category": { "type": "string" },
+        "servingLabel": { "type": "string" },
+        "calories": { "type": "integer" },
+        "proteinGrams": { "type": "integer" },
+        "carbsGrams": { "type": "integer" },
+        "fatGrams": { "type": "integer" },
+        "favorite": { "type": "boolean" },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Set via FieldValue.serverTimestamp()."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Set via FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "userId",
+        "name",
+        "category",
+        "servingLabel",
+        "calories",
+        "proteinGrams",
+        "carbsGrams",
+        "fatGrams",
+        "favorite",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "WeightEntry": {
+      "title": "WeightEntry",
+      "description": "Daily body weight check-in keyed by YYYY-MM-DD.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "dateKey": { "type": "string" },
+        "weightKg": { "type": "number" },
+        "note": { "type": "string" },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Set via FieldValue.serverTimestamp()."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Set via FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "userId",
+        "dateKey",
+        "weightKg",
+        "note",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "DailyActivity": {
+      "title": "DailyActivity",
+      "description": "Daily hydration and workout completion state keyed by YYYY-MM-DD.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "dateKey": { "type": "string" },
+        "waterMl": { "type": "integer" },
+        "workoutCompleted": { "type": "boolean" },
+        "workoutLabel": { "type": "string" },
+        "caloriesBurned": { "type": "integer" },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Set via FieldValue.serverTimestamp()."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Set via FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "userId",
+        "dateKey",
+        "waterMl",
+        "workoutCompleted",
+        "workoutLabel",
+        "caloriesBurned",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "WatchSnapshot": {
+      "title": "WatchSnapshot",
+      "description": "Smartwatch health metrics snapshot synced for a date key YYYY-MM-DD.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "dateKey": { "type": "string" },
+        "stepsToday": { "type": "integer" },
+        "avgHeartRateBpm": { "type": "integer" },
+        "restingHeartRateBpm": { "type": "integer" },
+        "activeBurnedKcal": { "type": "integer" },
+        "sleepDurationMinutes": { "type": "integer" },
+        "watchName": { "type": "string" },
+        "batteryPercent": { "type": "integer" },
+        "sourceLabel": { "type": "string" },
+        "syncedAtMillis": { "type": "integer" },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Set via FieldValue.serverTimestamp()."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Set via FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "userId",
+        "dateKey",
+        "sourceLabel",
+        "syncedAtMillis",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Authenticated user's nutrition profile, targets, and app settings."
+    },
+    "/users/{userId}/mealLogs/{mealId}": {
+      "schema": { "$ref": "#/entities/MealLog" },
+      "description": "User's daily logged meals."
+    },
+    "/users/{userId}/foodPresets/{presetId}": {
+      "schema": { "$ref": "#/entities/FoodPreset" },
+      "description": "User's food preset library and custom favorites."
+    },
+    "/users/{userId}/weightEntries/{dateKey}": {
+      "schema": { "$ref": "#/entities/WeightEntry" },
+      "description": "User's daily body weight check-ins."
+    },
+    "/users/{userId}/dailyActivities/{dateKey}": {
+      "schema": { "$ref": "#/entities/DailyActivity" },
+      "description": "User's daily water intake and workout logs."
+    },
+    "/users/{userId}/watchSnapshots/{dateKey}": {
+      "schema": { "$ref": "#/entities/WatchSnapshot" },
+      "description": "User's daily synced smartwatch health snapshots."
+    }
+  }
+}
